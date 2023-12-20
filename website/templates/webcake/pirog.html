@@ -1,0 +1,40 @@
+{% extends 'webcake/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Торттар осы жерден басталады -->
+    <div class="container">
+        <div class="product">
+            {% for post in pr %}
+                {% if post.avi %}
+                    {% if post.group == "pirog" %}
+                          <div class="product__list">
+                              <img class="product__img" src="{{post.photo.url}}" alt="">
+                              <span class="product__viewBtn">{{ post.aty }}</span>
+                              <p class="detail__prices">{{ post.baga }} тг</p>
+                              <p class="detail__descriptions">{{ post.qurami }}</p>
+                          </div>
+                            <div class="modal"></div>
+                            <div class="modal__content">
+                                <i class="modal__close far fa-times-circle"></i>
+                                <div class="modal__left">
+                                    <img class="modal__img" src="" alt="">
+                                </div>
+
+                                <div class="modal__right">
+                                    <div class="detail">
+                                        <h1 class="detail__title"></h1>
+                                        <p class="detail__description"></p>
+                                        <p class="detail__price"></p>
+                                        <a class="detail__bagBtn" href="{% url 'add_to_cart' post.id %}">Add to Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Торттар осы жерден аяқталады -->
+{% endblock%}

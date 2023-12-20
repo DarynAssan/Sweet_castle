@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sing up</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+	{% if messages %}
+			{% for message in messages %}
+				{% if message.tags %}
+					{{ message }}
+				{% endif %}
+  		  	{% endfor %}
+	{% endif %}
+<h2>Giriş yap/kaydol</h2>
+<div class="container" id="container">
+	<div class="form-container sign-in-container">
+		<form method="post">
+			{% csrf_token %}
+			<h1>Giriş yap</h1>
+			<span>Hesabınızı kullanın</span>
+			<input type="text" name="username" placeholder="İsim" required="">
+			<input type="password" name="pass"  placeholder="Şifre" required="">
+			<button type="submit">Giriş yap</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+				<h1>Merhaba dostum!</h1>
+				<p>Kişisel bilgilerinizi girin ve bizimle yolculuğa başlayın</p>
+				<a href="{% url 'sign' %}" ><button class="ghost" id="signUp">Kaydolmak</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

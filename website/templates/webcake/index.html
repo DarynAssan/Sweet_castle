@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Castle</title>
+
+    <!-- swiper сілтемесі -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- CDN значок белгішесіне сілтеме-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- пайдаланушы CSS файлы -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url({% static 'images/11.jpg' %}) no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+        .blogs{
+            background: url({% static 'images/backGround.png' %}) no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+        .newsletter{
+            background: url({% static 'images/bac.png' %}) no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+        .footer {
+            background: url({% static 'images/backGround.png' %}) no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- тақырып бөлімі осы жерден басталады -->
+    <header class="header">
+        <div class="logoContent">
+            <a href="#" class="logo"><img src="{% static 'images/sweetcastle 1.png' %}" alt=""></a>
+        </div>
+
+        <nav class="navbar">
+            <a href="#home">Ana sayfa</a>
+            <a href="#product">Gıda</a>
+            <a href="#blogs">Bloglar</a>
+            <a href="#review">Yorum</a>
+            <a href="#contact">Temaslar</a>
+        </nav>
+
+        <div class="icon">
+            <a href="{% url 'cart' %}"><span id="boot-icon" class="bi bi-cart-check" style="font-size: 30px; opacity: 1; -webkit-text-stroke-width: 1px;"></span></a>
+            <i class="fas fa-search" id="search"></i>
+            <i class="fas fa-bars" id="menu-bar"></i>
+            <a href="{% url 'log_out' %}" style="font-size:16px; font-weight: bold;">Log out</a>
+        </div>
+
+        <div class="search">
+            <form action="{% url 'search'  %}" method="get" >
+               <input type = "search" name="q" placeholder="arayış...">
+           </form>
+        </div>
+    </header>
+    <!-- тақырып бөлімі осында аяқталады -->
+
+    <!-- бастапқы бөлім осы жерден басталады -->
+    <section class="home" id="home" >
+        <div class="homeContent">
+            <h2>Herkes için lezzetli bir pasta</h2>
+            <p>
+                Tatlı Kale'nin lezzetli ve güzel pastası her zaman özel bir kutlamayı sembolize eder.
+            </p>
+            <div class="home-btn">
+                <a href="#"><button>Etraflıca</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Басты бет осында аяқталады -->
+
+    <!-- тауарлар бөлімі осы жерден басталады -->
+    <section class="product" id="product">
+        <div class="heading">
+            <h2>Ürünlerimiz</h2>
+        </div>
+        <div class="swiper product-row">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <div class="img">
+                        <img src="{% static 'images/Жалаңаш дерлік торты.webp' %}" alt="">
+                    </div>
+                    <div class="product-content">
+                        <h3>Pastalar</h3>
+                        <p>
+
+                        </p>
+                        <div class="orderNow">
+                            <button><a href="{% url 'tort' %}">Etraflıca</a> </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="img">
+                        <img src="{% static 'images/пирогглв.jpg' %}" alt="">
+                    </div>
+                    <div class="product-content">
+                        <h3>Börekler</h3>
+                        <p>
+
+                        </p>
+                        <div class="orderNow">
+                            <button><a href="{% url 'pirog' %}">Etraflıca</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="img">
+                        <img src="{% static 'images/кексглв.jpg' %}" alt="">
+                    </div>
+                    <div class="product-content">
+                        <h3>Kekler</h3>
+                        <p>
+                            
+                        </p>
+                        <div class="orderNow">
+                            <button><a href="{% url 'keks' %}">Etraflıca</a></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- тауарлар бөлімі осында аяқталады -->
+
+    <!-- блог бөлімі осы жерден басталады -->
+    <section class="blogs" id="blogs">
+
+        <div class=" swiper blogs-row">
+            <div class="swiper-wrapper">
+                <div class=" swiper-slide box">
+                    <div class="img">
+                        <img src="{% static 'images/blog-img1.png' %}" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Caramel Bourbon Vanilla Cupcakes </h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum
+                            corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis
+                            laborum sed soluta voluptatibus aspernatur natus, dicta quisquam.</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint
+                            eaque at.</p>
+                        <a href="#blogs" class="btn">learn more</a>
+                    </div>
+                </div>
+                <div class=" swiper-slide box">
+                    <div class="img">
+                        <img src="{% static 'images/blog-img2.png' %}" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Caramel Bourbon Vanilla Cupcakes </h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum
+                            corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis
+                            laborum sed soluta voluptatibus aspernatur natus, dicta quisquam.</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint
+                            eaque at.</p>
+                        <a href="#blogs" class="btn">learn more</a>
+                    </div>
+                </div>
+                <div class=" swiper-slide box">
+                    <div class="img">
+                        <img src="{% static 'images/blog-img2.png' %}" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Caramel Bourbon Vanilla Cupcakes </h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum
+                            corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis
+                            laborum sed soluta voluptatibus aspernatur natus, dicta quisquam.</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint
+                            eaque at.</p>
+                        <a href="#blogs" class="btn">learn more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+
+        </div>
+    </section>
+
+    <!-- блог бөлімі осында аяқталады -->
+
+    <!-- ақпараттық бюллетень бөлімі осы жерден басталады -->
+<!-- 
+    <section class="newsletter">
+        <form action="">
+            <h3>subscribe for latest update</h3>
+            <input type="email" name="" placeholder="enter your email" id="" class="box">
+            <input type="button" value="subscribe" class="box2">
+        </form>
+    </section> -->
+    <!-- ақпараттық бюллетень бөлімі осында аяқталады -->
+
+    <!-- шолу бөлімі осы жерден басталады -->
+    <section class="review" id="review">
+        <div class="heading">
+            <h2>client review</h2>
+        </div>
+
+
+        <div class=" swiper review-row">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="{% static 'images/client1.jpg' %}" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="{% static 'images/client1.jpg' %}" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="{% static 'images/client1.jpg' %}" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="{% static 'images/client1.jpg' %}" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </div>
+    </section>
+    <!-- шолу бөлімі осы жерден басталады -->
+
+    <!-- шолу бөлімі осында аяқталады -->
+
+    <footer class="footer" id="contact">
+    <div class="box-container">
+        <div class="mainBox">
+            <div class="content">
+                <a href="{% url 'index' %}"><img src="{% static 'images/sweetcastle 1.png' %}" alt=""></a>
+                <h1 class="logoName"> Sweet Castle </h1>
+            </div>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta accusamus maxime quod.</p>
+        </div>
+        <div class="box">
+            <h3>Hızlı bağlantı</h3>
+            <a href="{% url 'index' %}"> <i class="fas fa-arrow-right"></i>Ana sayfa</a>
+            <a href="#product"> <i class="fas fa-arrow-right"></i>Gıda</a>
+            <a href="#blogs"> <i class="fas fa-arrow-right"></i>Bloglar</a>
+            <a href="#review"> <i class="fas fa-arrow-right"></i>Yorum</a>
+            <a href="#contact"> <i class="fas fa-arrow-right"></i>Temaslar</a>
+        </div>
+        <div class="box">
+            <h3>Ürünlere bağlantı</h3>
+            <a href="{% url 'tort' %}"><i class="fas fa-arrow-right"></i>Pastalar</a>
+            <a href="{% url 'pirog' %}"><i class="fas fa-arrow-right"></i>Börekler</a>
+            <a href="{% url 'keks' %}"><i class="fas fa-arrow-right"></i>Kekler</a>
+            <a href="{% url 'cart' %}"><i class="fas fa-arrow-right"></i>Sepet</a>
+        </div>
+        <div class="box">
+            <h3>İletişim Bilgileri</h3>
+            <a href="tel:87054393876"> <i class="fas fa-phone"></i>+7 705 439 3876</a>
+            <a href="mailto:darynassan@gmail.com"> <i class="fas fa-envelope"></i>darynassan@gmail.com</a>
+        </div>
+    </div>
+    <div class="share">
+        <a href="https://instagram.com/sweet_castle_bakery?igshid=OGQ5ZDc2ODk2ZA== " class="fab fa-instagram"></a>
+        <a href="https://t.me/darynassan" class="fab fa-telegram"></a>
+        <a href="http://wa.me/77054393876" class="fab fa-whatsapp"></a>
+    </div>
+    <div class="credit">
+        tarafından oluşturuldu <span>Daryn, Meruert ve Alina </span> |tüm hakları saklıdır !
+    </div>
+</footer>
+
+
+    <!-- swiper js сілтемесі-->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- пайдаланушы JS файлы -->
+    <script src="{% static 'js/index.js' %}"></script>
+    
+
+
+</body>
+
+</html>

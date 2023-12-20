@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Castle</title>
+
+    <!-- swiper сілтемесі -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- CDN значок белгішесіне сілтеме-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- пайдаланушы CSS файлы -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script>
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getToken('csrftoken');
+    </script>
+</head>
+
+<body>
+
+    <!-- тақырып бөлімі осы жерден басталады -->
+    <header class="header">
+        <div class="logoContent">
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'images/sweetcastle 1.png' %}" alt=""></a>
+        </div>
+
+        <nav class="navbar">
+            <a href="{% url 'index' %}">Ana sayfa</a>
+            <a href="{% url 'tort' %}">Pastalar</a>
+            <a href="{% url 'pirog' %}">Börekler</a>
+            <a href="{% url 'keks' %}">Kekler</a>
+            <a href="#contact">Temaslar</a>
+        </nav>
+
+        <div class="icon">
+            <a href="{% url 'cart' %}"><span id="boot-icon" class="bi bi-cart-check" style="font-size: 30px; opacity: 1; -webkit-text-stroke-width: 1px;"></span></a>
+            <i class="fas fa-search" id="search"></i>
+            <i class="fas fa-bars" id="menu-bar"></i>
+            <a href="{% url 'log_out' %}" style="font-size:16px; font-weight: bold;">Log out</a>
+        </div>
+
+        <div class="search">
+           <form action="{% url 'search'  %}" method="get" >
+               <input type = "search" name="q" placeholder="arayış...">
+           </form>
+        </div>
+    </header>
+
+    <!-- Торттар осы жерден басталады -->
+    {% block content %}
+    <div class="container">
+        <div class="product">
+            {% for post in pr %}
+                {% if post.avi %}
+                    {% if post.group == "pirog" %}
+                          <div class="product__list">
+                              <img class="product__img" src="{{post.photo.url}}" alt="">
+                              <span class="product__viewBtn">{{ post.aty }}</span>
+                              <p class="detail__prices">{{ post.baga }} тг</p>
+                              <p class="detail__descriptions">{{ post.qurami }}</p>
+                          </div>
+                            <div class="modal"></div>
+                            <div class="modal__content">
+                                <i class="modal__close far fa-times-circle"></i>
+                                <div class="modal__left">
+                                    <img class="modal__img" src="" alt="">
+                                </div>
+
+                                <div class="modal__right">
+                                    <div class="detail">
+                                        <h1 class="detail__title"></h1>
+                                        <p class="detail__description"></p>
+                                        <p class="detail__price"></p>
+                                        <a class="detail__bagBtn" href="{% url 'add_to_cart' post.id %}">Add to Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endif %}
+                    {% if post.group == "tort" %}
+                          <div class="product__list">
+                              <img class="product__img" src="{{post.photo.url}}" alt="">
+                              <span class="product__viewBtn">{{ post.aty }}</span>
+                              <p class="detail__prices">{{ post.baga }} тг</p>
+                              <p class="detail__descriptions">{{ post.qurami }}</p>
+                          </div>
+                            <div class="modal"></div>
+                            <div class="modal__content">
+                                <i class="modal__close far fa-times-circle"></i>
+                                <div class="modal__left">
+                                    <img class="modal__img" src="" alt="">
+                                </div>
+
+                                <div class="modal__right">
+                                    <div class="detail">
+                                        <h1 class="detail__title"></h1>
+                                        <p class="detail__description"></p>
+                                        <p class="detail__price"></p>
+                                        <a class="detail__bagBtn" href="{% url 'add_to_cart' post.id %}">Add to Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endif %}
+                    {% if post.group == "keks" %}
+                          <div class="product__list">
+                              <img class="product__img" src="{{post.photo.url}}" alt="">
+                              <span class="product__viewBtn">{{ post.aty }}</span>
+                              <p class="detail__prices">{{ post.baga }} тг</p>
+                              <p class="detail__descriptions">{{ post.qurami }}</p>
+                          </div>
+                            <div class="modal"></div>
+                            <div class="modal__content">
+                                <i class="modal__close far fa-times-circle"></i>
+                                <div class="modal__left">
+                                    <img class="modal__img" src="" alt="">
+                                </div>
+
+                                <div class="modal__right">
+                                    <div class="detail">
+                                        <h1 class="detail__title"></h1>
+                                        <p class="detail__description"></p>
+                                        <p class="detail__price"></p>
+                                        <a class="detail__bagBtn" href="{% url 'add_to_cart' post.id %}">Add to Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+    <!-- Торттар осы жерден аяқталады -->
+
+
+    <!-- шолу бөлімі осында аяқталады -->
+
+<footer class="footer" id="contact">
+    <div class="box-container">
+        <div class="mainBox">
+            <div class="content">
+                <a href="{% url 'index' %}"><img src="{% static 'images/sweetcastle 1.png' %}" alt=""></a>
+                <h1 class="logoName"> Sweet Castle </h1>
+            </div>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta accusamus maxime quod.</p>
+        </div>
+        <div class="box">
+            <h3>Hızlı bağlantı</h3>
+            <a href="{% url 'index' %}"> <i class="fas fa-arrow-right"></i>Ana sayfa</a>
+            <a href="#product"> <i class="fas fa-arrow-right"></i>Gıda</a>
+            <a href="#blogs"> <i class="fas fa-arrow-right"></i>Bloglar</a>
+            <a href="#review"> <i class="fas fa-arrow-right"></i>Yorum</a>
+            <a href="#contact"> <i class="fas fa-arrow-right"></i>Temaslar</a>
+        </div>
+        <div class="box">
+            <h3>Ürünlere bağlantı</h3>
+            <a href="{% url 'tort' %}"><i class="fas fa-arrow-right"></i>Pastalar</a>
+            <a href="{% url 'pirog' %}"><i class="fas fa-arrow-right"></i>Börekler</a>
+            <a href="{% url 'keks' %}"><i class="fas fa-arrow-right"></i>Kekler</a>>
+            <a href="{% url 'cart' %}"><i class="fas fa-arrow-right"></i>Sepet</a>
+        </div>
+        <div class="box">
+            <h3>İletişim Bilgileri</h3>
+            <a href="tel:87054393876"> <i class="fas fa-phone"></i>+7 705 439 3876</a>
+            <a href="mailto:darynassan@gmail.com"> <i class="fas fa-envelope"></i>darynassan@gmail.com</a>
+        </div>
+    </div>
+    <div class="share">
+        <a href="https://instagram.com/sweet_castle_bakery?igshid=OGQ5ZDc2ODk2ZA== " class="fab fa-instagram"></a>
+        <a href="https://t.me/darynassan" class="fab fa-telegram"></a>
+        <a href="http://wa.me/77054393876" class="fab fa-whatsapp"></a>
+    </div>
+    <div class="credit">
+        tarafından oluşturuldu <span>Daryn, Meruert ve Alina </span> |tüm hakları saklıdır !
+    </div>
+</footer>
+
+
+    <!-- swiper js сілтемесі-->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- пайдаланушы JS файлы -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/test.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

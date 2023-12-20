@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sing up</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<h2>Giriş yap/kaydol</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form method="post">
+			{% csrf_token %}
+			<h1>Hesap Oluştur</h1>
+			<span>Kayıt için e-postanızı kullanın</span>
+			<input type="text" name="username" placeholder="İsim" required="">
+			<input type="email" name="email" placeholder="E-posta" required="">
+			<input type="password" name="password" placeholder="Şifre" required="">
+			<button type="submit">Kaydolmak</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+				<h1>Tekrar hoş geldiniz!</h1>
+				<p>Bizimle bağlantıda kalmak için lütfen kişisel bilgilerinizle giriş yapın</p>
+				<a href="{% url 'logins' %}" ><button class="ghost" id="signIn">Giriş yap</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="{% static 'js/login.js' %}"></script>
+</body>
+</html>
